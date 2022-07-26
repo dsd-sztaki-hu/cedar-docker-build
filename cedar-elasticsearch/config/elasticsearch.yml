@@ -2,3 +2,11 @@ network.host: 0
 network.bind_host: 0
 
 cluster.name: elasticsearch_cedar
+
+# M1
+# https://stackoverflow.com/questions/50314586/elasticsearch-fails-to-start-config-seccomp-and-config-seccomp-filter-are-neede
+bootstrap.system_call_filter: false
+
+# M1 -- elasticsearch:7.17.4
+# https://stackoverflow.com/questions/59350069/elasticsearch-start-up-error-the-default-discovery-settings-are-unsuitable-for
+discovery.type: single-node
