@@ -3,7 +3,8 @@ FROM debian:jessie-20181226-slim
 ENV MONGO_MAJOR 3.4
 ENV MONGO_VERSION 3.4.18
 ENV MONGO_PACKAGE mongodb-org
-ENV GOSU_VERSION 1.10
+# https://github.com/tianon/gosu/issues/93#issuecomment-948501378
+ENV GOSU_VERSION 1.14
 ENV MONGO_SCRIPTS_DIR /opt/mongo/scripts
 ENV MONGO_INCLUDE_DIR /opt/mongo/include
 ENV MONGO_CONFIG_DIR /opt/mongo/config

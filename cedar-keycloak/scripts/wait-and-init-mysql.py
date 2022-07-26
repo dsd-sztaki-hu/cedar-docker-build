@@ -85,8 +85,6 @@ def create_application_user_core(connection):
     grant_query = "GRANT ALL PRIVILEGES ON {database}.* TO '{user}'@'{host}'"
     q1 = grant_query.format(user=application_user, host=localhost, database=application_database)
     q2 = grant_query.format(user=application_user, host=mysql_host, database=application_database)
-    # print q1
-    # print q2
     cursor.execute(q1)
     cursor.execute(q2)
 
@@ -104,7 +102,8 @@ mysql_root_password = os.environ.get('CEDAR_MYSQL_ROOT_PASSWORD')
 application_user = os.environ.get('CEDAR_KEYCLOAK_MYSQL_USER')
 application_password = os.environ.get('CEDAR_KEYCLOAK_MYSQL_PASSWORD')
 application_database = os.environ.get('CEDAR_KEYCLOAK_MYSQL_DB')
-localhost = '127.0.0.1'
+#localhost = "192.168.17.%" #'127.0.0.1'
+localhost = "%" #'127.0.0.1'
 
 number_of_tries = 5
 sleep_seconds = 1

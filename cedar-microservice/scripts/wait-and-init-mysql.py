@@ -121,7 +121,8 @@ def init_app_level_database(env_selector):
 
 mysql_root_user = "root"
 mysql_root_password = os.environ.get('CEDAR_MYSQL_ROOT_PASSWORD')
-localhost = '127.0.0.1'
+# localhost = "192.168.17.%" #'127.0.0.1'
+localhost = "%" #'127.0.0.1'
 number_of_tries = 5
 sleep_seconds = 1
 

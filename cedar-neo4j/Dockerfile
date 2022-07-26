@@ -1,6 +1,10 @@
-FROM neo4j:3.5.3
+# pataki@: the originally used 3.5.3 was based on Alpine and its java didn't start at all. Now switched to
+# 3.5.6 (by trial and error), which is debian based and using apt-get instead of apk and it seems to start up all right
+FROM neo4j:3.5.6
 
-RUN apk --no-cache add curl netcat-openbsd
+# RUN apk --no-cache add curl netcat-openbsd
+# M1
+RUN apt-get install curl netcat-openbsd
 
 WORKDIR /var/lib/neo4j
 
