@@ -1,5 +1,8 @@
 # M1 -- jboss/keycloak:11.0.2 must be built locally for arm64 (aarch64)
-FROM --platform=linux/arm64 jboss/keycloak:11.0.2
+# This is not available in arm64 anyore ...
+# FROM --platform=linux/arm64 jboss/keycloak:11.0.2
+# Using this, although it might be riski as this is not an official image. For M1 de, it is OK, though.
+FROM wizzn/keycloak:12
 
 ENV CEDAR_VERSION=2.6.19
 
@@ -9,8 +12,10 @@ RUN microdnf -y install python3.8
 RUN microdnf -y install python38-PyMySQL
 RUN microdnf -y install nc maven
 RUN microdnf -y install java-11-openjdk-headless
+
+# RUN alternatives --set java java-11-openjdk.x86_64
 # M1
-#RUN alternatives --set java java-11-openjdk.x86_64
+#RUN update-alternatives --config java
 RUN alternatives --set java java-11-openjdk.aarch64
 
 ADD config/m2/settings.xml /root/.m2/
