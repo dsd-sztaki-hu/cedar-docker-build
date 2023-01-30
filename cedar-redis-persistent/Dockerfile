@@ -1,5 +1,4 @@
-# M1
-FROM --platform=linux/arm64 redis:3.2.11
+FROM --platform=linux/amd64 redis:3.2.11
 
 RUN mkdir /log && chown redis:redis /log
 VOLUME /log

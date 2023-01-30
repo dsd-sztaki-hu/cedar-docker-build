@@ -1,4 +1,4 @@
-FROM debian:jessie-20181226-slim
+FROM --platform=linux/amd64 debian:jessie-20181226-slim
 
 ENV MONGO_MAJOR 3.4
 ENV MONGO_VERSION 3.4.18
