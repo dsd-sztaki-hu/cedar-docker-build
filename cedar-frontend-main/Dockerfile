@@ -148,10 +148,13 @@ ENV EDITOR_URI ${CEDAR_NPM_NEXUS_REPO}/cedar-template-editor/-/${EDITOR_TARBALL}
 RUN echo ${EDITOR_URI}
 
 # Download and extract the frontend source
-RUN \
-curl --fail --show-error --location --remote-name ${EDITOR_URI} && \
-tar --extract --file ${EDITOR_TARBALL} --directory ${CEDAR_TEMPLATE_EDITOR_HOME} --strip 1 && \
-rm ${EDITOR_TARBALL}
+#RUN \
+#curl --fail --show-error --location --remote-name ${EDITOR_URI} && \
+#tar --extract --file ${EDITOR_TARBALL} --directory ${CEDAR_TEMPLATE_EDITOR_HOME} --strip 1 && \
+#rm ${EDITOR_TARBALL}
+# Instead of getting the tarball, get the source from our repo
+RUN apt-get install -y git
+RUN git clone -b arp-alpha-2.6.37 https://github.com/dsd-sztaki-hu/cedar-template-editor.git ${CEDAR_TEMPLATE_EDITOR_HOME} && cd ${CEDAR_TEMPLATE_EDIT
 
 # Install dependencies
 RUN \
