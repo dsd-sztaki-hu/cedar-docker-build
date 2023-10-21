@@ -1,6 +1,6 @@
 FROM debian:bullseye-slim
 
-ENV CEDAR_VERSION=2.6.41
+ENV CEDAR_VERSION=2.6.45
 ENV CEDAR_NPM_NEXUS_REPO=https://nexus.bmir.stanford.edu/repository/npm-cedar
 
 ENV NGINX_VERSION   1.23.4
@@ -154,7 +154,7 @@ RUN echo ${EDITOR_URI}
 #rm ${EDITOR_TARBALL}
 # Instead of getting the tarball, get the source from our repo
 RUN apt-get install -y git
-RUN git clone -b arp-alpha-2.6.41 https://github.com/dsd-sztaki-hu/cedar-template-editor.git ${CEDAR_TEMPLATE_EDITOR_HOME}
+RUN git clone -b arp-2.6.45 https://github.com/dsd-sztaki-hu/cedar-template-editor.git ${CEDAR_TEMPLATE_EDITOR_HOME}
 
 # Install dependencies
 RUN \
