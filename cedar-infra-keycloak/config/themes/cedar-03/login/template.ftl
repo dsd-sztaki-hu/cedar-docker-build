@@ -39,7 +39,13 @@
 <body class="${properties.kcBodyClass!}">
   <div class="${properties.kcLoginClass!}">
     <div id="kc-header" class="${properties.kcHeaderClass!}">
-      <div id="kc-header-wrapper" class="${properties.kcHeaderWrapperClass!}">${kcSanitize(msg("loginTitleHtml",(realm.displayNameHtml!'')))?no_esc}</div>
+        <div id="arp-big-logo"></div>
+
+
+        <#--      <div id="kc-header-wrapper" class="${properties.kcHeaderWrapperClass!}">-->
+<#--&lt;#&ndash;          <div id="arp-small-logo"/>&ndash;&gt;-->
+<#--&lt;#&ndash;          ${kcSanitize(msg("loginTitleHtml",(realm.displayNameHtml!'')))?no_esc}&ndash;&gt;-->
+<#--      </div>-->
     </div>
     <div class="${properties.kcFormCardClass!} <#if displayWide>${properties.kcFormCardAccountClass!}</#if>">
       <header class="${properties.kcFormHeaderClass!}">
@@ -64,11 +70,11 @@
                         <span class="subtitle"><span class="required">*</span> ${msg("requiredFields")}</span>
                     </div>
                     <div class="col-md-10">
-                      <a class="cedar-header" href="${url.loginUrl}"><div id="cedar-small-logo" ><span class="pajama-header"><#nested "header"></span></div></a>
+<#--                      <a class="cedar-header" href="${url.loginUrl}"><div id="cedar-small-logo" >AAAA<span class="pajama-header"><#nested "header"></span></div></a>-->
                     </div>
                 </div>
             <#else>
-                <a class="cedar-header" href="${url.loginUrl}"><div id="cedar-small-logo" ><span class="pajama-header"><#nested "header"></span></div></a>
+<#--                <a class="cedar-header" href="${url.loginUrl}"><div id="cedar-small-logo" ><span class="pajama-header"><#nested "header"></span></div></a>-->
             </#if>
         <#else>
             <#if displayRequiredFields>
@@ -146,7 +152,7 @@
       </div>
     </div>
 
-    <div class="kc-video" id="<#if displayWide>kc-video-wide</#if><#if !displayWide>kc-video-narrow</#if>"><div><a  target="_blank" href="https://www.youtube.com/watch?v=1NBYWOKo9qo&list=PLRFrKQ_tBSltHFumG7TLkpuLGv_dz8xwO" >Watch the video tutorial</a></div></div>
+<#--    <div class="kc-video" id="<#if displayWide>kc-video-wide</#if><#if !displayWide>kc-video-narrow</#if>"><div><a  target="_blank" href="https://www.youtube.com/watch?v=1NBYWOKo9qo&list=PLRFrKQ_tBSltHFumG7TLkpuLGv_dz8xwO" >Watch the video tutorial</a></div></div>-->
 
 
   </div>
