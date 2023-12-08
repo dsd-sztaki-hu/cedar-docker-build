@@ -1,8 +1,12 @@
+/*.login-pf body {*/
+/*    background:url('../img/cedar-bg-smaller.jpg') top left repeat;*/
+/*    background-size: 200px;*/
+/*    background-position: top;*/
+/*    height: 100%;*/
+/*}*/
+
 .login-pf body {
-    background:url('../img/cedar-bg-smaller.jpg') top left repeat;
-    background-size: 200px;
-    background-position: top;
-    height: 100%;
+    background:rgba(30, 49, 90, 0.98);
 }
 
 .alert-error {
@@ -546,6 +550,28 @@ form#kc-select-back-form div.login-pf-social-section {
     background-position: left;
     margin-bottom: 20px;
 }
+
+#arp-small-logo {
+    background-image: url(../img/topbanner_arp_schemareg_001_beta_50px.png);
+    background-repeat: no-repeat;
+    background-size: 160px;
+    width: 248px;
+    height: 50px;
+    background-position: left;
+    margin-bottom: 20px;
+}
+
+#arp-big-logo {
+    background-image: url(../img/topbanner_arp_schemareg_001_beta.png);
+    background-repeat: no-repeat;
+    background-size: contain; /* Adjust according to your preference */
+    width: 561px; /* Original width */
+    height: 114px; /* Original height */
+    margin: 0 auto; /* Center the div */
+    margin-bottom: 20px;
+    transform: scale(0.8); /* Scale down to 80% */
+}
+
 
 a.cedar-header:hover {
     text-decoration: none;
