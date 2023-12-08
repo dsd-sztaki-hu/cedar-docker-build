@@ -3,9 +3,13 @@ FROM registry.access.redhat.com/ubi9
 ENV KEYCLOAK_VERSION 22.0.4
 ARG KEYCLOAK_DIST=https://github.com/keycloak/keycloak/releases/download/$KEYCLOAK_VERSION/keycloak-$KEYCLOAK_VERSION.tar.gz
 
-RUN dnf install -y tar gzip
+RUN dnf install -y tar gzip wget
 
-ADD $KEYCLOAK_DIST /tmp/keycloak/
+# This is rather slow and we don't have any indication what is going on and it is frustrating. So, instead we use
+# wget as below. While this is noisy, at least we know that things are happening.
+# ADD $KEYCLOAK_DIST /tmp/keycloak/
+
+RUN (mkdir /tmp/keycloak && cd /tmp/keycloak && wget $KEYCLOAK_DIST && ls -la)
 
 # The next step makes it uniform for local development and upstream built.
 # If it is a local tar archive then it is unpacked, if from remote is just downloaded.
