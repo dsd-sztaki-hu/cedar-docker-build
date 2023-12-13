@@ -49,6 +49,7 @@ for filename in /etc/nginx/conf.d/*inc.conf; do
 done
 
 sed -i 's/<cedar.CEDAR_KEYCLOAK_HOST>/'${CEDAR_KEYCLOAK_HOST}'/g' /etc/nginx/conf.d/server-auth.inc.conf
+sed -i 's/<cedar.CEDAR_KEYCLOAK_HTTP_PORT>/'${CEDAR_KEYCLOAK_HTTP_PORT}'/g' /etc/nginx/conf.d/server-auth.inc.conf
 
 sed -i 's/<cedar.CEDAR_FRONTEND_EDITOR_HOST>/'${CEDAR_FRONTEND_EDITOR_HOST}'/g' /etc/nginx/conf.d/frontend-*.inc.conf
 sed -i 's/<cedar.CEDAR_FRONTEND_COMPONENT_HOST>/'${CEDAR_FRONTEND_COMPONENT_HOST}'/g' /etc/nginx/conf.d/frontend-*.inc.conf
