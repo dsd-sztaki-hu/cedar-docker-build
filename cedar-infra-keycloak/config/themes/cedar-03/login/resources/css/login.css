@@ -552,7 +552,7 @@ form#kc-select-back-form div.login-pf-social-section {
 }
 
 #arp-small-logo {
-    background-image: url(../img/topbanner_arp_schemareg_002_beta_50px.png);
+    background-image: url(../img/topbanner_arp_schemareg_002_50px.png);
     background-repeat: no-repeat;
     background-size: 160px;
     width: 248px;
@@ -562,7 +562,7 @@ form#kc-select-back-form div.login-pf-social-section {
 }
 
 #arp-big-logo {
-    background-image: url(../img/topbanner_arp_schemareg_002_beta.png);
+    background-image: url(../img/topbanner_cedar.png);
     background-repeat: no-repeat;
     background-size: contain; /* Adjust according to your preference */
     width: 564px; /* Original width */
