@@ -7,6 +7,9 @@ ENV NGINX_VERSION   1.23.4
 ENV NJS_VERSION     0.7.11
 ENV PKG_RELEASE     1~bullseye
 
+ARG ARP_BRANCH_SUFFIX=""
+ENV ARP_BRANCH_SUFFIX=${ARP_BRANCH_SUFFIX}
+
 RUN set -x \
 # create nginx user/group first, to be consistent throughout docker variants
     && addgroup --system --gid 101 nginx \
@@ -154,6 +157,7 @@ RUN echo ${EDITOR_URI}
 #rm ${EDITOR_TARBALL}
 # Instead of getting the tarball, get the source from our repo
 RUN apt-get install -y git
+RUN echo "ARP_BRANCH_SUFFIX is "${ARP_BRANCH_SUFFIX}
 RUN git clone -b arp-${CEDAR_VERSION}${ARP_BRANCH_SUFFIX:-''} https://github.com/dsd-sztaki-hu/cedar-template-editor.git ${CEDAR_TEMPLATE_EDITOR_HOME}
 
 # Install dependencies
