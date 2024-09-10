@@ -154,7 +154,7 @@ RUN echo ${EDITOR_URI}
 #rm ${EDITOR_TARBALL}
 # Instead of getting the tarball, get the source from our repo
 RUN apt-get install -y git
-RUN git clone -b arp-${CEDAR_VERSION} https://github.com/dsd-sztaki-hu/cedar-template-editor.git ${CEDAR_TEMPLATE_EDITOR_HOME}
+RUN git clone -b arp-${CEDAR_VERSION}${ARP_BRANCH_SUFFIX:-''} https://github.com/dsd-sztaki-hu/cedar-template-editor.git ${CEDAR_TEMPLATE_EDITOR_HOME}
 
 # Install dependencies
 RUN \
