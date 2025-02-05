@@ -22,6 +22,8 @@ mkdir -p nginx-user
 mkdir -p nginx-valuerecommender
 mkdir -p nginx-worker 
 mkdir -p nginx-arp-dataverse
+mkdir -p nginx-dataverse
+mkdir -p nginx-search
 
 mkdir -p nginx-frontend-artifacts
 mkdir -p nginx-frontend-cedar
