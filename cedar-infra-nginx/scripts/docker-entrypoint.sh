@@ -60,5 +60,6 @@ sed -i 's/<cedar.CEDAR_FRONTEND_ARTIFACTS_HOST>/'${CEDAR_FRONTEND_ARTIFACTS_HOST
 sed -i 's/<cedar.CEDAR_FRONTEND_BRIDGING_HOST>/'${CEDAR_FRONTEND_BRIDGING_HOST}'/g' /etc/nginx/conf.d/frontend-*.inc.conf
 
 sed -i 's/<cedar.CEDAR_ARP_DATAVERSE_API_BACKEND_HOST_AND_PORT>/'${CEDAR_ARP_DATAVERSE_API_BACKEND_HOST_AND_PORT}'/g' /etc/nginx/conf.d/server-arp-dataverse.inc.conf
+sed -i 's/<cedar.CEDAR_ARP_DATAVERSE_API_BACKEND_HOST_AND_PORT>/'${CEDAR_ARP_DATAVERSE_API_BACKEND_HOST_AND_PORT}'/g' /etc/nginx/conf.d/server-dataverse.inc.conf
 
 exec "$@"
