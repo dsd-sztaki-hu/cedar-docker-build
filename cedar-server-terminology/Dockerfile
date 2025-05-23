@@ -1,5 +1,8 @@
 FROM metadatacenter/cedar-microservice:2.6.47
 
+# pataki@: We use the 2.7.7 of the terminology server because of API change in BioPortak
+ENV CEDAR_VERSION=2.7.7
+
 ENV CEDAR_SERVER_NAME=terminology
 
 ENV CEDAR_TERMINOLOGY_HTTP_PORT=9004
