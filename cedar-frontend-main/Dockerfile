@@ -15,23 +15,11 @@ RUN set -x \
     && addgroup --system --gid 101 nginx \
     && adduser --system --disabled-login --ingroup nginx --no-create-home --home /nonexistent --gecos "nginx user" --shell /bin/false --uid 101 nginx \
     && apt-get update \
-    && apt-get install --no-install-recommends --no-install-suggests -y gnupg1 ca-certificates \
+    && apt-get install --no-install-recommends --no-install-suggests -y ca-certificates curl gnupg \
     && \
-    NGINX_GPGKEY=8540A6F18833A80E9C1653A42FD21310B49F6B46; \
     NGINX_GPGKEY_PATH=/usr/share/keyrings/nginx-archive-keyring.gpg; \
-    export GNUPGHOME="$(mktemp -d)"; \
-    found=''; \
-    for server in \
-        hkp://keyserver.ubuntu.com:80 \
-        pgp.mit.edu \
-    ; do \
-        echo "Fetching GPG key $NGINX_GPGKEY from $server"; \
-        gpg1 --keyserver "$server" --keyserver-options timeout=10 --recv-keys "$NGINX_GPGKEY" && found=yes && break; \
-    done; \
-    test -z "$found" && echo >&2 "error: failed to fetch GPG key $NGINX_GPGKEY" && exit 1; \
-    gpg1 --export "$NGINX_GPGKEY" > "$NGINX_GPGKEY_PATH" ; \
-    rm -rf "$GNUPGHOME"; \
-    apt-get remove --purge --auto-remove -y gnupg1 && rm -rf /var/lib/apt/lists/* \
+    curl -fsSL https://nginx.org/keys/nginx_signing.key | gpg --dearmor > "$NGINX_GPGKEY_PATH" \
+    && rm -rf /var/lib/apt/lists/* \
     && dpkgArch="$(dpkg --print-architecture)" \
     && nginxPackages=" \
         nginx=${NGINX_VERSION}-${PKG_RELEASE} \
