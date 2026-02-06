@@ -27,7 +27,7 @@ mkdir -p nginx-search
 
 mkdir -p nginx-frontend-artifacts
 mkdir -p nginx-frontend-cedar
-mkdir -p nginx-frontend-component
+mkdir -p nginx-frontend-content
 mkdir -p nginx-frontend-monitoring
 mkdir -p nginx-frontend-openview
 mkdir -p nginx-frontend-bridging
@@ -39,7 +39,7 @@ echo "Using CEDAR_MICROSERVICE_HOST        :${CEDAR_MICROSERVICE_HOST}"
 echo "Using CEDAR_KEYCLOAK_HOST            :${CEDAR_KEYCLOAK_HOST}"
 echo "Using CEDAR_KEYCLOAK_HTTP_PORT       :${CEDAR_KEYCLOAK_HTTP_PORT}"
 echo "Using CEDAR_FRONTEND_EDITOR_HOST     :${CEDAR_FRONTEND_EDITOR_HOST}"
-echo "Using CEDAR_FRONTEND_COMPONENT_HOST  :${CEDAR_FRONTEND_COMPONENT_HOST}"
+echo "Using CEDAR_FRONTEND_CONTENT_HOST    :${CEDAR_FRONTEND_CONTENT_HOST}"
 echo "Using CEDAR_FRONTEND_OPENVIEW_HOST   :${CEDAR_FRONTEND_OPENVIEW_HOST}"
 echo "Using CEDAR_FRONTEND_MONITORING_HOST :${CEDAR_FRONTEND_MONITORING_HOST}"
 echo "Using CEDAR_FRONTEND_ARTIFACTS_HOST  :${CEDAR_FRONTEND_ARTIFACTS_HOST}"
@@ -55,7 +55,7 @@ sed -i 's/<cedar.CEDAR_KEYCLOAK_HOST>/'${CEDAR_KEYCLOAK_HOST}'/g' /etc/nginx/con
 sed -i 's/<cedar.CEDAR_KEYCLOAK_HTTP_PORT>/'${CEDAR_KEYCLOAK_HTTP_PORT}'/g' /etc/nginx/conf.d/server-auth.inc.conf
 
 sed -i 's/<cedar.CEDAR_FRONTEND_EDITOR_HOST>/'${CEDAR_FRONTEND_EDITOR_HOST}'/g' /etc/nginx/conf.d/frontend-*.inc.conf
-sed -i 's/<cedar.CEDAR_FRONTEND_COMPONENT_HOST>/'${CEDAR_FRONTEND_COMPONENT_HOST}'/g' /etc/nginx/conf.d/frontend-*.inc.conf
+sed -i 's/<cedar.CEDAR_FRONTEND_CONTENT_HOST>/'${CEDAR_FRONTEND_CONTENT_HOST}'/g' /etc/nginx/conf.d/frontend-*.inc.conf
 sed -i 's/<cedar.CEDAR_FRONTEND_OPENVIEW_HOST>/'${CEDAR_FRONTEND_OPENVIEW_HOST}'/g' /etc/nginx/conf.d/frontend-*.inc.conf
 sed -i 's/<cedar.CEDAR_FRONTEND_MONITORING_HOST>/'${CEDAR_FRONTEND_MONITORING_HOST}'/g' /etc/nginx/conf.d/frontend-*.inc.conf
 sed -i 's/<cedar.CEDAR_FRONTEND_ARTIFACTS_HOST>/'${CEDAR_FRONTEND_ARTIFACTS_HOST}'/g' /etc/nginx/conf.d/frontend-*.inc.conf

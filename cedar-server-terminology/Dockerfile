@@ -1,4 +1,4 @@
-FROM metadatacenter/cedar-microservice:2.6.47
+FROM metadatacenter/cedar-microservice:2.8.0
 
 # pataki@: We use the 2.7.7 of the terminology server because of API change in BioPortak
 ENV CEDAR_VERSION=2.7.7

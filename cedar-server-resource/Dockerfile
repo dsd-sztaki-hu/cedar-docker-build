@@ -1,4 +1,4 @@
-FROM metadatacenter/cedar-microservice:2.6.47
+FROM metadatacenter/cedar-microservice:2.8.0
 
 ENV CEDAR_SERVER_NAME=resource
 
