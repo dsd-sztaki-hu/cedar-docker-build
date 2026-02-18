@@ -1,8 +1,10 @@
 FROM nginx:1.23.4
 
 ENV CEDAR_VERSION=2.8.0
-ENV CEDAR_NPM_NEXUS_REPO=https://nexus.bmir.stanford.edu/repository/npm-cedar
+ENV CEDAR_METADATA_CENTER_REPO=https://github.com/metadatacenter
 ENV PACKAGE_NAME=cedar-openview-dist
+ENV TAGS_PREFIX=archive/refs/tags
+ENV TAG=release-${CEDAR_VERSION}
 
 # Add the entry point
 ADD scripts/docker-entrypoint.sh /
@@ -23,15 +25,15 @@ ENV CEDAR_FRONTEND_HOME ${CEDAR_HOME}/${PACKAGE_NAME}/
 RUN mkdir -p ${CEDAR_FRONTEND_HOME}
 WORKDIR ${CEDAR_FRONTEND_HOME}
 
-ENV TARBALL ${PACKAGE_NAME}-${CEDAR_VERSION}.tgz
-ENV PACKAGE_URI ${CEDAR_NPM_NEXUS_REPO}/${PACKAGE_NAME}/-/${TARBALL}
+ENV TARBALL ${TAG}.tar.gz
+ENV PACKAGE_URI ${CEDAR_METADATA_CENTER_REPO}/${PACKAGE_NAME%-dist}/${TAGS_PREFIX}/${TAG}.tar.gz
 
 RUN echo ${PACKAGE_URI}
 
 # Download and extract the frontend source
 RUN \
 curl --fail --show-error --location --remote-name ${PACKAGE_URI} && \
-tar --extract --file ${TARBALL} --directory ${CEDAR_FRONTEND_HOME} --strip 1 && \
+tar -xzf ${TARBALL} --strip-components=2 ${PACKAGE_NAME%-dist}-${TAG}/${PACKAGE_NAME} && \
 rm ${TARBALL}
 
 EXPOSE 4220
