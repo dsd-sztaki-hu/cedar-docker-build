@@ -10,6 +10,8 @@ ENV PKG_RELEASE     1~bullseye
 ARG ARP_BRANCH_SUFFIX=""
 ENV ARP_BRANCH_SUFFIX=${ARP_BRANCH_SUFFIX}
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN set -x \
 # create nginx user/group first, to be consistent throughout docker variants
     && addgroup --system --gid 101 nginx \
@@ -144,7 +146,7 @@ RUN echo ${EDITOR_URI}
 #tar --extract --file ${EDITOR_TARBALL} --directory ${CEDAR_TEMPLATE_EDITOR_HOME} --strip 1 && \
 #rm ${EDITOR_TARBALL}
 # Instead of getting the tarball, get the source from our repo
-RUN apt-get install -y git
+RUN apt-get update && apt-get install -y git
 RUN echo "ARP_BRANCH_SUFFIX is "${ARP_BRANCH_SUFFIX}
 RUN git clone -b arp-${CEDAR_VERSION}${ARP_BRANCH_SUFFIX:-''} https://github.com/dsd-sztaki-hu/cedar-template-editor.git ${CEDAR_TEMPLATE_EDITOR_HOME}
 
