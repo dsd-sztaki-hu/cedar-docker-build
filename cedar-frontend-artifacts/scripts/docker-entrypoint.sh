@@ -3,7 +3,10 @@ set -e
 
 echo "Executing sed"
 
-sed -i 's/window.cedarDomain = \".*\"/window.cedarDomain = \"'${CEDAR_HOST}'\"/g' index.html
-sed -i 's/content\.metadatacenter\.org\//content\.'${CEDAR_HOST}'\//g' index.html
+INDEX_HTML="${CEDAR_FRONTEND_HOME}/cedar-artifacts-dist/index.html"
+if [ -f "$INDEX_HTML" ]; then
+  sed -i 's/window.cedarDomain = \".*\"/window.cedarDomain = \"'${CEDAR_HOST}'\"/g' "$INDEX_HTML"
+  sed -i 's/content\.metadatacenter\.org\//content\.'${CEDAR_HOST}'\//g' "$INDEX_HTML"
+fi
 
 exec "$@"
