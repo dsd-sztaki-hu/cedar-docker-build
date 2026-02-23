@@ -1,7 +1,9 @@
 FROM debian:bullseye-slim
 
 ENV CEDAR_VERSION=2.8.0
-ENV CEDAR_NPM_NEXUS_REPO=https://nexus.bmir.stanford.edu/repository/npm-cedar
+
+ARG CEDAR_NPM_REGISTRY=https://nexus.bmir.stanford.edu/repository/npm-cedar
+ENV CEDAR_NPM_REGISTRY=${CEDAR_NPM_REGISTRY}
 
 ENV NGINX_VERSION   1.23.4
 ENV NJS_VERSION     0.7.11
@@ -136,7 +138,7 @@ RUN mkdir -p ${CEDAR_TEMPLATE_EDITOR_HOME}
 WORKDIR ${CEDAR_TEMPLATE_EDITOR_HOME}
 
 ENV EDITOR_TARBALL cedar-template-editor-${CEDAR_VERSION}.tgz
-ENV EDITOR_URI ${CEDAR_NPM_NEXUS_REPO}/cedar-template-editor/-/${EDITOR_TARBALL}
+ENV EDITOR_URI ${CEDAR_NPM_REGISTRY}/cedar-template-editor/-/${EDITOR_TARBALL}
 
 RUN echo ${EDITOR_URI}
 

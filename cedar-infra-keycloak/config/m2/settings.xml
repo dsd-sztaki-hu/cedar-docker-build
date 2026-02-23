@@ -9,11 +9,11 @@
       <repositories>
         <repository>
           <id>bmir-nexus-snapshots</id>
-          <url>https://nexus.bmir.stanford.edu/repository/snapshots</url>
+          <url>${env.CEDAR_MAVEN_SNAPSHOTS_URL}</url>
         </repository>
         <repository>
           <id>bmir-nexus-releases</id>
-          <url>https://nexus.bmir.stanford.edu/repository/releases</url>
+          <url>${env.CEDAR_MAVEN_RELEASES_URL}</url>
         </repository>
       </repositories>
     </profile>
@@ -22,4 +22,17 @@
   <activeProfiles>
     <activeProfile>bmir</activeProfile>
   </activeProfiles>
+
+  <servers>
+    <server>
+      <id>bmir-nexus-snapshots</id>
+      <username>${env.CEDAR_NEXUS_USERNAME}</username>
+      <password>${env.CEDAR_NEXUS_PASSWORD}</password>
+    </server>
+    <server>
+      <id>bmir-nexus-releases</id>
+      <username>${env.CEDAR_NEXUS_USERNAME}</username>
+      <password>${env.CEDAR_NEXUS_PASSWORD}</password>
+    </server>
+  </servers>
 </settings>

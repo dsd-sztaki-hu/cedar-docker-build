@@ -24,6 +24,17 @@ RUN microdnf update -y
 RUN microdnf install -y vim iputils hostname
 RUN microdnf clean all
 
+ARG CEDAR_MAVEN_REPO_URL=https://nexus.bmir.stanford.edu
+ARG CEDAR_MAVEN_SNAPSHOTS_URL=https://nexus.bmir.stanford.edu/repository/snapshots
+ARG CEDAR_MAVEN_RELEASES_URL=https://nexus.bmir.stanford.edu/repository/releases
+ARG CEDAR_NEXUS_USERNAME
+ARG CEDAR_NEXUS_PASSWORD
+ENV CEDAR_MAVEN_REPO_URL=${CEDAR_MAVEN_REPO_URL}
+ENV CEDAR_MAVEN_SNAPSHOTS_URL=${CEDAR_MAVEN_SNAPSHOTS_URL}
+ENV CEDAR_MAVEN_RELEASES_URL=${CEDAR_MAVEN_RELEASES_URL}
+ENV CEDAR_NEXUS_USERNAME=${CEDAR_NEXUS_USERNAME}
+ENV CEDAR_NEXUS_PASSWORD=${CEDAR_NEXUS_PASSWORD}
+
 ADD config/m2/settings.xml /root/.m2/
 
 RUN echo 'alias cedarat="/cedar/app/cedarat.sh"' >> ~/.bashrc

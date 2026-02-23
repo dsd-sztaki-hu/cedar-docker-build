@@ -31,7 +31,7 @@ echo "Current working directory:"
 pwd
 
 ARTIFACT=cedar-${CEDAR_SERVER_NAME}-server-application
-REPO_URL=https://nexus.bmir.stanford.edu/
+REPO_URL=${CEDAR_MAVEN_REPO_URL:-https://nexus.bmir.stanford.edu}/
 ARTIFACT_FULL=org.metadatacenter:${ARTIFACT}:${CEDAR_VERSION}
 
 echo "Downloading microservice jar:"

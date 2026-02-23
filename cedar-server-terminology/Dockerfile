@@ -1,7 +1,8 @@
 FROM metadatacenter/cedar-microservice:2.8.0
 
-# pataki@: We use the 2.7.7 of the terminology server because of API change in BioPortak
-ENV CEDAR_VERSION=2.7.7
+# CEDAR_VERSION from build-arg (build script passes IMAGE_VERSION when not set)
+ARG CEDAR_VERSION=2.8.0
+ENV CEDAR_VERSION=${CEDAR_VERSION}
 
 ENV CEDAR_SERVER_NAME=terminology
 

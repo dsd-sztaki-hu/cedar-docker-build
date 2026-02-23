@@ -40,13 +40,25 @@ RUN dnf -y install nc maven
 
 RUN alternatives --display java | grep 'family java-17-openjdk' | awk '{print $4}' | xargs alternatives --set java
 
+ARG CEDAR_MAVEN_REPO_URL=https://nexus.bmir.stanford.edu
+ARG CEDAR_MAVEN_SNAPSHOTS_URL=https://nexus.bmir.stanford.edu/repository/snapshots
+ARG CEDAR_MAVEN_RELEASES_URL=https://nexus.bmir.stanford.edu/repository/releases
+ARG CEDAR_NEXUS_USERNAME
+ARG CEDAR_NEXUS_PASSWORD
+ENV CEDAR_MAVEN_REPO_URL=${CEDAR_MAVEN_REPO_URL}
+ENV CEDAR_MAVEN_SNAPSHOTS_URL=${CEDAR_MAVEN_SNAPSHOTS_URL}
+ENV CEDAR_MAVEN_RELEASES_URL=${CEDAR_MAVEN_RELEASES_URL}
+ENV CEDAR_NEXUS_USERNAME=${CEDAR_NEXUS_USERNAME}
+ENV CEDAR_NEXUS_PASSWORD=${CEDAR_NEXUS_PASSWORD}
+
 ADD config/m2/settings.xml /root/.m2/
+
 ADD config/themes/cedar-03 /opt/keycloak/themes/cedar-03
 ADD config/keycloak.conf /opt/keycloak/conf/.
 RUN mkdir /opt/keycloak/data/import/
 ADD config/keycloak-realm.CEDAR.development.2023-07-05.json /opt/keycloak/.
 
-RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.5.0:get -DrepoUrl=https://nexus.bmir.stanford.edu/ -Dartifact=org.metadatacenter:cedar-keycloak-event-listener:${CEDAR_VERSION} -Dmaven.wagon.http.retryHandler.count=5
+RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.5.0:get -DrepoUrl=${CEDAR_MAVEN_REPO_URL}/ -Dartifact=org.metadatacenter:cedar-keycloak-event-listener:${CEDAR_VERSION} -Dmaven.wagon.http.retryHandler.count=5
 RUN mvn org.apache.maven.plugins:maven-dependency-plugin:3.5.0:copy -Dartifact=org.metadatacenter:cedar-keycloak-event-listener:${CEDAR_VERSION}:jar -DoutputDirectory=/opt/keycloak/providers -Dmdep.useBaseVersion=true
 
 ADD scripts/wait-and-init-mysql.py /opt/keycloak/

@@ -16,8 +16,16 @@ source ${CEDAR_DOCKER_BUILD_HOME}/bin/cedar-images-base.sh
 build_image()
 {
     echo "Building image" $1:${IMAGE_VERSION}
-    docker build -t $1:${IMAGE_VERSION} .
-    
+    BUILD_ARGS=""
+    [ -n "${CEDAR_MAVEN_REPO_URL:-}" ] && BUILD_ARGS="$BUILD_ARGS --build-arg CEDAR_MAVEN_REPO_URL=$CEDAR_MAVEN_REPO_URL"
+    [ -n "${CEDAR_MAVEN_SNAPSHOTS_URL:-}" ] && BUILD_ARGS="$BUILD_ARGS --build-arg CEDAR_MAVEN_SNAPSHOTS_URL=$CEDAR_MAVEN_SNAPSHOTS_URL"
+    [ -n "${CEDAR_MAVEN_RELEASES_URL:-}" ] && BUILD_ARGS="$BUILD_ARGS --build-arg CEDAR_MAVEN_RELEASES_URL=$CEDAR_MAVEN_RELEASES_URL"
+    [ -n "${CEDAR_NEXUS_USERNAME:-}" ] && BUILD_ARGS="$BUILD_ARGS --build-arg CEDAR_NEXUS_USERNAME=$CEDAR_NEXUS_USERNAME"
+    [ -n "${CEDAR_NEXUS_PASSWORD:-}" ] && BUILD_ARGS="$BUILD_ARGS --build-arg CEDAR_NEXUS_PASSWORD=$CEDAR_NEXUS_PASSWORD"
+    [ -n "${CEDAR_NPM_REGISTRY:-}" ] && BUILD_ARGS="$BUILD_ARGS --build-arg CEDAR_NPM_REGISTRY=$CEDAR_NPM_REGISTRY"
+    # CEDAR_VERSION defaults to IMAGE_VERSION (artifact version = image tag)
+    BUILD_ARGS="$BUILD_ARGS --build-arg CEDAR_VERSION=${CEDAR_VERSION:-$IMAGE_VERSION}"
+    docker build $BUILD_ARGS -t $1:${IMAGE_VERSION} .
 }
 
 build_all_images()
