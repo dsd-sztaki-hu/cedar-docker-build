@@ -3,6 +3,7 @@ FROM nginx:1.23.4
 ENV CEDAR_VERSION=2.8.0
 ENV CEDAR_METADATA_CENTER_REPO=https://github.com/metadatacenter
 ENV PACKAGE_NAME=cedar-artifacts-dist
+ENV PACKAGE_BASE=cedar-artifacts
 ENV TAGS_PREFIX=archive/refs/tags
 ENV TAG=release-${CEDAR_VERSION}
 
@@ -26,14 +27,14 @@ RUN mkdir -p ${CEDAR_FRONTEND_HOME}
 WORKDIR ${CEDAR_FRONTEND_HOME}
 
 ENV TARBALL ${TAG}.tar.gz
-ENV PACKAGE_URI ${CEDAR_METADATA_CENTER_REPO}/${PACKAGE_NAME%-dist}/${TAGS_PREFIX}/${TAG}.tar.gz
+ENV PACKAGE_URI ${CEDAR_METADATA_CENTER_REPO}/${PACKAGE_BASE}/${TAGS_PREFIX}/${TAG}.tar.gz
 
 RUN echo ${PACKAGE_URI}
 
 # Download and extract the frontend source
 RUN \
 curl --fail --show-error --location --remote-name ${PACKAGE_URI} && \
-tar -xzf ${TARBALL} --strip-components=2 ${PACKAGE_NAME%-dist}-${TAG}/${PACKAGE_NAME} && \
+tar -xzf ${TARBALL} --strip-components=2 ${PACKAGE_BASE}-${TAG}/${PACKAGE_NAME} && \
 rm ${TARBALL}
 
 EXPOSE 4320
