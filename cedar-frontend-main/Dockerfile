@@ -15,6 +15,9 @@ ENV ARP_BRANCH_SUFFIX=${ARP_BRANCH_SUFFIX}
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN set -x \
+# Debian 11 is archived. deb.debian.org no longer serves its security packages.
+    && sed -i 's|deb.debian.org|archive.debian.org|g; s|security.debian.org|archive.debian.org|g' /etc/apt/sources.list \
+    && printf 'Acquire::Check-Valid-Until "false";\n' > /etc/apt/apt.conf.d/99no-check-valid-until \
 # create nginx user/group first, to be consistent throughout docker variants
     && addgroup --system --gid 101 nginx \
     && adduser --system --disabled-login --ingroup nginx --no-create-home --home /nonexistent --gecos "nginx user" --shell /bin/false --uid 101 nginx \
