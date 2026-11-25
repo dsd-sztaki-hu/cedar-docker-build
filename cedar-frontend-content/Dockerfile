@@ -12,11 +12,12 @@ ADD scripts/docker-entrypoint.sh /
 # Add nginx config
 ADD config/*.conf /etc/nginx/conf.d/
 
-# Update and install curl
-RUN \
-apt-get update && \
-apt-get install -y apt-utils && \
-apt-get install -y curl
+# Debian 11 is archived. deb.debian.org no longer serves its security packages.
+RUN sed -i 's|deb.debian.org|archive.debian.org|g; s|security.debian.org|archive.debian.org|g' /etc/apt/sources.list \
+    && printf 'Acquire::Check-Valid-Until "false";\n' > /etc/apt/apt.conf.d/99no-check-valid-until \
+    && apt-get update \
+    && apt-get install -y apt-utils \
+    && apt-get install -y curl
 
 ENV CEDAR_HOME /srv/cedar
 ENV CEDAR_FRONTEND_HOME ${CEDAR_HOME}/${PACKAGE_NAME}/
